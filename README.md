@@ -1,2 +1,2 @@
 # TopoDockQ
-![Figure](./combine_all.jpg)
+![Figure](img/combine_all.jpg)
