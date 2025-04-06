@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 class TopoDockQ(nn.Module):
     def __init__(self, input_dim, neurons1, neurons2, neurons3, neurons4, dropout):
-        super(Net3, self).__init__()
+        super(TopoDockQ, self).__init__()
         self.input_dim = input_dim
         self.neurons1 = neurons1
         self.neurons2 = neurons2
