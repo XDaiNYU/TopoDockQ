@@ -42,7 +42,9 @@ def extra_gpu_work(device, tensor_size=20000):
     result = torch.matmul(dummy_data, dummy_data)
     return result
 
-
+def RMSELoss(y_pred, y_true):
+    """Root Mean Squared Error (RMSE) loss."""
+    return torch.sqrt(nn.functional.mse_loss(y_pred, y_true))
 
 import torch
 import torch.nn as nn
