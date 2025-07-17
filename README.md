@@ -19,7 +19,7 @@ The protein-peptide interface PDB files can be downloaded from the [figshare rep
 The feature extraction algorithm used for generating TopoDockQ features is also available at: [TopoDockQ-Feature](https://github.com/wangru25/TopoDockQ-Feature)
 
 ### Training and Inference Data
-Download the necessary feature CSV files from the [Zenodo repository](https://zenodo.org/record/15469415):
+Download the necessary feature and model files from the [Zenodo repository](https://zenodo.org/record/15469415):
 
 - `processed_data.zip` contains:
   - `singlePPD_full_bins_features.csv`: Generated TopoDockQ features for model training, validation, and testing
