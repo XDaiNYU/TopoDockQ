@@ -2,7 +2,8 @@
 
 ![Figure](./image/combine_all.jpg)
 
-**Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu> <https://github.com/wangru25>
+**Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu>
+**Corresponding Author:** Dr. Yingkai Zhang <yz22@nyu.edu>
 
 ## Overview
 
@@ -108,7 +109,7 @@ The inference example is described in `02_tutorial_inference.ipynb`. The noteboo
 
 You can use either:
 - The model saved by the training script
-- The optimal model (`best_model.pth`) provided in the Zenodo repository
+- The optimal model (`best_model.pth`) provided in the [Zenodo repository](https://zenodo.org/record/15469415)
 
 ## Model Architecture
 
@@ -140,10 +141,6 @@ TopoDockQ/
 └── README.md                     # This file
 ```
 
-## Documentation
-
-For detailed documentation and additional resources, visit the [TopoDockQ documentation](https://github.com/XDaiNYU/TopoDockQ).
-
 ## Citation
 
 If you use TopoDockQ in your research, please cite:
@@ -167,8 +164,7 @@ If you use TopoDockQ in your research, please cite:
 
 For feature generation questions and support, please contact:
 - Dr. Rui Wang: <rw3594@nyu.edu>
-- GitHub: <https://github.com/wangru25> 
 
 For model training questions and support, please contact:
 - Mr. Xuhang Dai: <xd638@nyu.edu>
-- Github: <https://github.com/XDaiNYU>
+- Dr. Rui Wang: <rw3594@nyu.edu>
