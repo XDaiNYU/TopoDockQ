@@ -1,5 +1,7 @@
 # TopoDockQ
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 ![Figure](./image/combine_all.jpg)
 
 **Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu>
