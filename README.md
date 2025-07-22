@@ -13,7 +13,7 @@ TopoDockQ is a deep learning model that predicts protein-peptide binding quality
 ## Data
 
 ### Protein-Peptide Interface Files
-The protein-peptide interface PDB files can be downloaded from the [figshare repository](https://zenodo.org/record/15469415).
+The protein-peptide interface PDB files can be downloaded from the [Zenodo repository](https://zenodo.org/record/15469415).
 
 ### Feature Extraction
 The feature extraction algorithm used for generating TopoDockQ features is also available at: [TopoDockQ-Feature](https://github.com/wangru25/TopoDockQ-Feature)
