@@ -9,3 +9,4 @@ dependencies:
   - pandas<=2.2.0
   - scikit-learn=1.3.0
   - gudhi=3.8.0
+  - pytorch>=2.0.0
