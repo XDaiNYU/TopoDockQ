@@ -39,7 +39,7 @@ Download the necessary feature and model files from the [Zenodo repository](http
 
 ## Requirements
 
-- python=3.8.1
+- python=3.8.18
 - numpy<=1.24.3
 - pandas<=2.2.0
 - scikit-learn=1.3.0
