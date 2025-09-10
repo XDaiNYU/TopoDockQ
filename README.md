@@ -2,15 +2,15 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+## Overview
+
+TopoDockQ is a deep learning model that predicts protein-peptide binding quality using persistent combinatorial Laplacian-based features. The model leverages topological data analysis to extract meaningful features from protein-peptide interfaces and uses a neural network architecture to predict DockQ scores.
+
 ![Figure](./image/combine_all.jpg)
 
 **Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu>
 
 **Corresponding Author:** Dr. Yingkai Zhang <yz22@nyu.edu>
-
-## Overview
-
-TopoDockQ is a deep learning model that predicts protein-peptide binding quality using persistent combinatorial Laplacian-based features. The model leverages topological data analysis to extract meaningful features from protein-peptide interfaces and uses a neural network architecture to predict DockQ scores.
 
 ## Data
 
@@ -21,21 +21,18 @@ The protein-peptide interface PDB files can be downloaded from the [Zenodo repos
 The feature extraction algorithm used for generating TopoDockQ features is also available at: [TopoDockQ-Feature](https://github.com/wangru25/TopoDockQ-Feature)
 
 ### Training and Inference Data
-Download the necessary feature and model files from the [Zenodo repository](https://zenodo.org/record/15469415):
+Download the necessary feature and model files from the [Zenodo repository](https://zenodo.org/records/15469415):
 
-- `processed_data.zip` contains:
+- `processed_data.zip` (661.7 MB) contains:
   - `singlePPD_full_bins_features.csv`: Generated TopoDockQ features for model training, validation, and testing
   - `singlePPD_DockQ.csv`, `singlePPD_filtered_DockQ.csv`: Calculated DockQ scores for model training, validation, and testing
+  
+  **Installation:** Extract this zip file to `./data/processed_data/` folder
 
-- `trained_model.zip` contains:
+- `trained_model.zip` (66.9 MB) contains:
   - `best_model.pth`: Optimal pre-trained model for inference
-
-## Features
-
-- **Persistent Combinatorial Laplacian Features**: Advanced topological features extracted from protein-peptide interfaces
-- **Deep Neural Network**: Multi-layer perceptron with batch normalization and dropout for robust predictions
-- **Comprehensive Training Pipeline**: Complete workflow from feature extraction to model training and inference
-- **Easy-to-use Tutorials**: Jupyter notebooks for training and inference examples
+  
+  **Installation:** Extract this zip file to the `./models/` folder
 
 ## Requirements
 
@@ -45,8 +42,9 @@ Download the necessary feature and model files from the [Zenodo repository](http
 - scikit-learn=1.3.0
 - gudhi=3.8.0
 - pytorch>=2.0.0
-
-**Note:** You can also use the existing `mlms2023` conda environment which already has PyTorch 2.0.0 and other required packages installed.
+- matplotlib>=3.5.0
+- scipy>=1.9.0
+- pillow>=8.0.0
 
 ## Installation
 
@@ -62,7 +60,7 @@ conda env create -f environment.yaml
 conda activate TopoDockQ
 ```
 
-## Usage
+## Feature Generation
 
 ### Feature Extraction
 
@@ -88,64 +86,97 @@ python -m main --pdb_id 4k38 --model_id 44 --bins "[0, 2., 2.25, 2.5, 2.75, 3., 
 
 **Output:** Features will be saved as `feature_4k38_ranked_44_sp_interface.npy` in the specified saving path.
 
-### Model Training
+## Model Training
 
-The model training example is described in `01_tutorial_train.ipynb`. The notebook demonstrates:
+**Prerequisites:** Before training, download the required data files:
 
+1. Download `processed_data.zip` from the [Zenodo repository](https://zenodo.org/records/15469415)
+2. Extract the zip file and place the contents in `./data/processed_data/` folder
+3. Ensure you have the following files in your data directory:
+   - `singlePPD_DockQ.csv`
+   - `singlePPD_filtered_DockQ`
+   - `singlePPD_full_bins_features.csv`
+
+**Recommended:** Use the Python script for training:
+
+```bash
+python 01_tutorial_train.py
+```
+
+**Note:** This is an example training script with 30 epochs. You can customize the number of epochs by modifying the `num_epochs` parameter in the script.
+
+**For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
+
+```bash
+jupyter notebook 01_tutorial_train.ipynb
+```
+
+The training process includes:
 - Data preprocessing and feature engineering
 - Model architecture configuration
 - Training hyperparameters
 - Model evaluation and validation
+- Automatic model saving and checkpointing
 
 **Key Hyperparameters:**
+
 - Input dimension: 2646
 - Hidden layers: 2048 neurons each (4 layers)
 - Learning rate: 0.0005
 - Batch size: 512
 - Dropout: 0.0
 
+**Training Outputs:**
+
+The training script generates the following files in the project root directory:
+
+- `example_MLP_best_model.pth`: Model with best validation loss
+- `example_MLP_best_pcc_model.pth`: Model with best validation PCC
+- `example_MLP_30epoch.pth`: The last epoch model after training
+- Training plots: RMSE and PCC curves displayed during training
+
 ### Model Inference
 
-The inference example is described in `02_tutorial_inference.ipynb`. The notebook shows:
+**Prerequisites:** Before running inference, ensure you have:
 
+1. Downloaded `trained_model.zip` from the [Zenodo repository](https://zenodo.org/records/15469415), unzipped it, and placed the `best_model.pth` file in the `./models/` folder
+
+**Recommended:** Use the Python script for inference:
+
+```bash
+python 02_tutorial_inference.py
+```
+
+**For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
+```bash
+jupyter notebook 02_tutorial_inference.ipynb
+```
+
+The inference process includes:
 - Loading pre-trained models
 - Feature preprocessing for inference
-- Making predictions on test data
-- Model performance evaluation
+- Making predictions on validation and test data
+- Model performance evaluation with metrics (RMSE, PCC)
+- Saving results to CSV files
 
-You can use either:
-- The model saved by the training script
-- The optimal model (`best_model.pth`) provided in the [Zenodo repository](https://zenodo.org/record/15469415)
+**Model Options:**
 
-## Model Architecture
+- Use the optimal model (`best_model.pth`) provided in the [Zenodo repository](https://zenodo.org/record/15469415)
 
-TopoDockQ uses a deep neural network with the following architecture:
+**Inference Outputs:**
 
-- **Input Layer**: 2646 persistent combinatorial Laplacians features
-- **Hidden Layers**: 4 fully connected layers with 2048 neurons each
-- **Activation**: ReLU
-- **Regularization**: Batch normalization and dropout
-- **Output Layer**: Single neuron for DockQ score prediction
-- **Loss Function**: Root Mean Squared Error (RMSE)
+The inference script generates the following files in the project root directory:
 
-## Project Structure
+- `val_inference_results.csv`: Validation set predictions with true vs predicted DockQ scores
+- `test_inference_results.csv`: Test set predictions with true vs predicted DockQ scores
 
-```
-TopoDockQ/
-├── data/
-│   └── interface_files/          # Protein-peptide interface PDB files
-├── feature/                      # Extracted feature files
-├── image/                        # Project images and figures
-├── results/                      # Model results and outputs
-├── src/                          # Source code
-│   ├── model.py                  # Neural network model definition
-│   ├── train.py                  # Training utilities
-│   └── ...
-├── 01_tutorial_train.ipynb       # Training tutorial
-├── 02_tutorial_inference.ipynb   # Inference tutorial
-├── environment.yaml              # Conda environment specification
-└── README.md                     # This file
-```
+Each CSV file contains:
+- `True_DockQ`: Actual DockQ scores from the dataset
+- `Predicted_DockQ (p-DockQ)`: Model predictions
+
+The script also displays performance metrics:
+- RMSE (Root Mean Square Error)
+- PCC (Pearson Correlation Coefficient)
 
 ## Citation
 
