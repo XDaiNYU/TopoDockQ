@@ -1,6 +1,7 @@
 name: TopoDockQ
 
 channels:
+  - conda-forge
   - defaults
 
 dependencies:
