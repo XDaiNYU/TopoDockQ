@@ -129,7 +129,7 @@ The training process includes:
 
 **Training Outputs:**
 
-The training script generates the following files in the project root directory:
+The training script generates the following files in the  `./model/` directory:
 
 - `example_MLP_best_model.pth`: Model with best validation loss
 - `example_MLP_best_pcc_model.pth`: Model with best validation PCC
