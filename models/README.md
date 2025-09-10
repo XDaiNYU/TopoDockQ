@@ -1,0 +1,207 @@
+# TopoDockQ
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## Overview
+
+TopoDockQ is a deep learning model that predicts protein-peptide binding quality using persistent combinatorial Laplacian-based features. The model leverages topological data analysis to extract meaningful features from protein-peptide interfaces and uses a neural network architecture to predict DockQ scores.
+
+![Figure](./image/combine_all.jpg)
+
+**Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu>
+
+**Corresponding Author:** Dr. Yingkai Zhang <yz22@nyu.edu>
+
+## Data
+
+### Protein-Peptide Interface Files
+The protein-peptide interface PDB files can be downloaded from the [Zenodo repository](https://zenodo.org/record/15469415).
+
+### Feature Extraction
+The feature extraction algorithm used for generating TopoDockQ features is also available at: [TopoDockQ-Feature](https://github.com/wangru25/TopoDockQ-Feature)
+
+### Training and Inference Data
+Download the necessary feature and model files from the [Zenodo repository](https://zenodo.org/records/15469415):
+
+- `processed_data.zip` (661.7 MB) contains:
+  - `singlePPD_full_bins_features.csv`: Generated TopoDockQ features for model training, validation, and testing
+  - `singlePPD_DockQ.csv`, `singlePPD_filtered_DockQ.csv`: Calculated DockQ scores for model training, validation, and testing
+  
+  **Installation:** Extract this zip file to `./data/processed_data/` folder
+
+- `trained_model.zip` (66.9 MB) contains:
+  - `best_model.pth`: Optimal pre-trained model for inference
+  
+  **Installation:** Extract this zip file to the `./models/` folder
+
+## Requirements
+
+- python=3.8.18
+- numpy<=1.24.3
+- pandas<=2.2.0
+- scikit-learn=1.3.0
+- gudhi=3.8.0
+- pytorch>=2.0.0
+- matplotlib>=3.5.0
+- scipy>=1.9.0
+- pillow>=8.0.0
+
+## Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/XDaiNYU/TopoDockQ.git
+cd TopoDockQ
+```
+
+2. Create and activate the conda environment:
+```bash
+conda env create -f environment.yaml
+conda activate TopoDockQ
+```
+
+## Feature Generation
+
+### Feature Extraction
+
+To extract features from protein-peptide interface files:
+
+```bash
+python -m main --pdb_id PDBID --model_id MODELID --bins BINS --filtration FILTRATION --file_path FILEPATH --saving_path SAVINGPATH
+```
+
+**Parameters:**
+
+- PDBID: A string, the Protein Data Bank ID. For example, 4k38
+- MODELID: An int, the ID of the model. For example, 44.
+- BINS: A string records bins' starting and ending points in a list format.
+- FILTRATION: A string, records various distance-based filtration values. 
+- FILEPATH: A string shows the directory of the protein-peptide data.
+- SAVINGPATH: A string, indicates where the output feature file will be saved. 
+
+**Example:**
+```bash
+python -m main --pdb_id 4k38 --model_id 44 --bins "[0, 2., 2.25, 2.5, 2.75, 3., 3.25, 3.5, 3.75, 4., 4.25, 4.5, 4.75, 5.]" --filtration "[0, 2., 2.25, 2.5, 2.75, 3., 3.25, 3.5, 3.75, 4., 4.25, 4.5, 4.75, 5.]" --file_path ./data/interface_files --saving_path ./feature
+```
+
+**Output:** Features will be saved as `feature_4k38_ranked_44_sp_interface.npy` in the specified saving path.
+
+## Model Training
+
+**Prerequisites:** Before training, download the required data files:
+
+1. Download `processed_data.zip` from the [Zenodo repository](https://zenodo.org/records/15469415)
+2. Extract the zip file and place the contents in `./data/processed_data/` folder
+3. Ensure you have the following files in your data directory:
+   - `singlePPD_DockQ.csv`
+   - `singlePPD_filtered_DockQ`
+   - `singlePPD_full_bins_features.csv`
+
+**Recommended:** Use the Python script for training:
+
+```bash
+python 01_tutorial_train.py
+```
+
+**Note:** This is an example training script with 30 epochs. You can customize the number of epochs by modifying the `num_epochs` parameter in the script.
+
+**For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
+
+```bash
+jupyter notebook 01_tutorial_train.ipynb
+```
+
+The training process includes:
+- Data preprocessing and feature engineering
+- Model architecture configuration
+- Training hyperparameters
+- Model evaluation and validation
+- Automatic model saving and checkpointing
+
+**Key Hyperparameters:**
+
+- Input dimension: 2646
+- Hidden layers: 2048 neurons each (4 layers)
+- Learning rate: 0.0005
+- Batch size: 512
+- Dropout: 0.0
+
+**Training Outputs:**
+
+The training script generates the following files in the project root directory:
+
+- `example_MLP_best_model.pth`: Model with best validation loss
+- `example_MLP_best_pcc_model.pth`: Model with best validation PCC
+- `example_MLP_30epoch.pth`: The last epoch model after training
+- Training plots: RMSE and PCC curves displayed during training
+
+### Model Inference
+
+**Prerequisites:** Before running inference, ensure you have:
+
+1. Downloaded `trained_model.zip` from the [Zenodo repository](https://zenodo.org/records/15469415), unzipped it, and placed the `best_model.pth` file in the `./models/` folder
+
+**Recommended:** Use the Python script for inference:
+
+```bash
+python 02_tutorial_inference.py
+```
+
+**For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
+```bash
+jupyter notebook 02_tutorial_inference.ipynb
+```
+
+The inference process includes:
+- Loading pre-trained models
+- Feature preprocessing for inference
+- Making predictions on validation and test data
+- Model performance evaluation with metrics (RMSE, PCC)
+- Saving results to CSV files
+
+**Model Options:**
+
+- Use the optimal model (`best_model.pth`) provided in the [Zenodo repository](https://zenodo.org/record/15469415)
+
+**Inference Outputs:**
+
+The inference script generates the following files in the project root directory:
+
+- `val_inference_results.csv`: Validation set predictions with true vs predicted DockQ scores
+- `test_inference_results.csv`: Test set predictions with true vs predicted DockQ scores
+
+Each CSV file contains:
+- `True_DockQ`: Actual DockQ scores from the dataset
+- `Predicted_DockQ (p-DockQ)`: Model predictions
+
+The script also displays performance metrics:
+- RMSE (Root Mean Square Error)
+- PCC (Pearson Correlation Coefficient)
+
+## Citation
+
+If you use TopoDockQ in your research, please cite:
+
+```bibtex
+@article{dai2025topological,
+  title={Topological Deep Learning for Enhancing Peptide-Protein Complex Prediction},
+  author={Dai, Xuhang and Wang, Rui and Zhang, Yingkai},
+  journal={in review},
+  year={2025}
+}
+```
+
+## Other Helpful References for Persistent Combinatorial Laplacians:
+
+- R. Wang, R. Zhao, E. Ribando-Gros, J. Chen, Y. Tong, and G.-W. Wei. [HERMES: Persistent spectral graph software](https://www.aimsciences.org/article/doi/10.3934/fods.2021006), _Foundations of Data Science_, 2021.
+- R. Wang, D. D. Nguyen, and G.-W. Wei. [Persistent spectral graph](https://users.math.msu.edu/users/weig/paper/p243.pdf), _International Journal for Numerical Methods in Biomedical Engineering_, page e3376, 2020.
+
+
+## Contact
+
+For feature generation questions and support, please contact:
+- Dr. Rui Wang: <rw3594@nyu.edu>
+
+For model training questions and support, please contact:
+- Mr. Xuhang Dai: <xd638@nyu.edu>
+- Dr. Rui Wang: <rw3594@nyu.edu>
