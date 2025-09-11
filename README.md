@@ -6,6 +6,8 @@
 
 TopoDockQ is a deep learning model that predicts protein-peptide binding quality using persistent combinatorial Laplacian-based features. The model leverages topological data analysis to extract meaningful features from protein-peptide interfaces and uses a neural network architecture to predict DockQ scores.
 
+A YouTube installation & running guidance video can be found here: https://www.youtube.com/watch?v=IGOtribF4u4
+
 ![Figure](./image/combine_all.jpg)
 
 **Co-first authored by:** Dr. Rui Wang <rw3594@nyu.edu>
