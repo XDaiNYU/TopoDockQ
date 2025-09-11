@@ -214,7 +214,7 @@ The inference process includes:
 
 **Model Options:**
 
-- Use the optimal model (`best_model.pth`) provided in the [Zenodo repository](https://zenodo.org/record/15469415)
+- Use the optimal model (`best_model.pth`) provided in the `trained_model.zip` in [Zenodo repository](https://zenodo.org/record/15469415)
 
 **Inference Outputs:**
 
