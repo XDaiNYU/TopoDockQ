@@ -41,7 +41,7 @@ def main():
     # File paths
     df1_file = './data/processed_data/singlePPD_full_bins_features.csv'
     df2_file = './data/processed_data/singlePPD_DockQ.csv'
-    df3_file= './generated_npy/example_features.csv'
+    df3_file= './feature/example_features.csv'
     model_path = "./models/best_model.pth"
     
     # Hyperparameters (matching training configuration)
