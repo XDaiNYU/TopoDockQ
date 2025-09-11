@@ -119,4 +119,4 @@ if __name__ == "__main__":
     df.to_csv(args.output_file, index=False)
 
     print(f"✅ Saved combined features to: {args.output_file}")
-    #print(f"🔢 Final shape: {df.shape}")
+    print(f"🔢 Final shape: {df.shape}")
