@@ -7,7 +7,7 @@ The script is built on **[ProDy](http://prody.csb.pitt.edu/)** for PDB parsing a
 
 You can install the ProDy in a different conda environment. Suggested ProDy version is 2.4.1.
 
-After install ProDy, or running in a conda environment with ProDy
+After install ProDy, or running in a conda environment with ProDy. You can install it with `prody_environment.yml`.
 
 ```bash
 python extract_interface.py \
