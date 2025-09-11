@@ -140,6 +140,7 @@ The training process includes:
 - Training hyperparameters
 - Model evaluation and validation
 - Automatic model saving and checkpointing
+- Meaningless features removel; the valid features are 2646 after removel(can also be find at `./data/valid_columns.txt`).
 
 **Key Hyperparameters:**
 
@@ -221,6 +222,7 @@ The inference script generates the following files in the project root directory
 
 - `val_inference_results.csv`: Validation set predictions with true vs predicted DockQ scores
 - `test_inference_results.csv`: Test set predictions with true vs predicted DockQ scores
+- `./example_inference_results.csv`: Output predicted DockQ scores from example with `04_inference_from_generated_csv.py` script.
 
 Each CSV file contains:
 - `True_DockQ`: Actual DockQ scores from the dataset
@@ -242,6 +244,10 @@ If you use TopoDockQ in your research, please cite:
   year={2025}
 }
 ```
+
+## Complex Interface PDB Files Generation:
+- This step is flexible: you may use any molecular visualization or analysis software, such as PyMOL, ChimeraX, or scripting libraries like Biopython or ProDy, to generate interface structures.
+- For convenience, we provide a ready-to-use script, extract_interface.py, located in the ./src/ directory. This script is based on ProDy so please install ProDy(https://github.com/prody/ProDy) before running it.
 
 ## Other Helpful References for Persistent Combinatorial Laplacians:
 
