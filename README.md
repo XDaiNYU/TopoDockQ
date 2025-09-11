@@ -92,13 +92,14 @@ python -m main --pdb_id 4k38 --model_id 44 --bins "[0, 2.  ,  2.25,  2.5 ,  2.75
 
 **Output:** Features will be saved as `feature_4k38_ranked_44_sp_interface.npy` in the specified saving path.
 
-**Transform the generated features from npy format to csv format:**
+**Transform the generated features from npy format to CSV format:**
 
 ```bash
 python 03_extract_features_from_npy_to_csv.py \ 
   --npy_file ./feature/feature_4k38_ranked_44_sp_interface.npy \
   --output_file ./feature/example_features.csv        
 ```
+**Output:** Features in CSV format will be saved as `example_features.csv ` in the specified saving path. 
 
 ## Model Training
 
@@ -165,6 +166,29 @@ python 02_tutorial_inference.py
 ```bash
 jupyter notebook 02_tutorial_inference.ipynb
 ```
+
+**For inference on generated features in CSV format:** 
+The CSV file can be generated with the `03_extract_features_from_npy_to_csv.py` script as described in the *Feature Generation* step.  
+In this example script `python 04_inference_from_generated_csv.py`, the CSV file path is set as `df3_file='./generated_npy/example_features.csv'`.  
+You may need to change it if you're using a different working folder.  
+You can also find `./example_inference_results.csv` as the output.
+
+```bash
+python 04_inference_from_generated_csv.py
+```
+> **Output** \
+> ........\
+> Extracting features and targets...  
+> Standardizing features...  
+> Using device: cpu  
+> Loading model from ./models/best_model.pth...  
+> Performing inference on single set...  
+> [[0.15463054]]  # This is the prediction values p-DockQ.
+> Inference completed successfully!
+
+
+
+
 
 The inference process includes:
 - Loading pre-trained models
