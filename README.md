@@ -182,7 +182,7 @@ jupyter notebook 02_tutorial_inference.ipynb
 
 **For inference on generated features in CSV format:** 
 The CSV file can be generated with the `03_extract_features_from_npy_to_csv.py` script as described in the *Feature Generation* step.  
-In this example script `python 04_inference_from_generated_csv.py`, the CSV file path is set as `df3_file='./generated_npy/example_features.csv'`.  
+In this example script `python 04_inference_from_generated_csv.py`, the CSV file path is set as `df3_file='./feature/example_features.csv'`.  
 You may need to change it if you're using a different working folder.  
 You can also find `./example_inference_results.csv` as the output.
 
