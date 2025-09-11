@@ -122,6 +122,12 @@ python 01_tutorial_train.py
 
 **For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
 
+Install Jupyter Notebook** (if not already installed).
+Follow the [official installation guide](https://jupyter.org/install) or simply run:
+```bash
+pip install notebook
+```
+
 ```bash
 jupyter notebook 01_tutorial_train.ipynb
 ```
@@ -163,6 +169,12 @@ python 02_tutorial_inference.py
 ```
 
 **For viewing outputs:** Jupyter notebook for interactive exploration and quick output viewing:
+Install Jupyter Notebook** (if not already installed).
+Follow the [official installation guide](https://jupyter.org/install) or simply run:
+```bash
+pip install notebook
+```
+
 ```bash
 jupyter notebook 02_tutorial_inference.ipynb
 ```
