@@ -202,9 +202,6 @@ python 04_inference_from_generated_csv.py
 > Inference completed successfully!
 
 
-
-
-
 The inference process includes:
 - Loading pre-trained models
 - Feature preprocessing for inference
@@ -250,10 +247,8 @@ If you use TopoDockQ in your research, please cite:
 - For convenience, we provide a ready-to-use script, extract_interface.py, located in the ./src/ directory. This script is based on ProDy so please install ProDy(https://github.com/prody/ProDy) before running it.
 
 ## Other Helpful References for Persistent Combinatorial Laplacians:
-
-- R. Wang, R. Zhao, E. Ribando-Gros, J. Chen, Y. Tong, and G.-W. Wei. [HERMES: Persistent spectral graph software](https://www.aimsciences.org/article/doi/10.3934/fods.2021006), _Foundations of Data Science_, 2021.
-- R. Wang, D. D. Nguyen, and G.-W. Wei. [Persistent spectral graph](https://users.math.msu.edu/users/weig/paper/p243.pdf), _International Journal for Numerical Methods in Biomedical Engineering_, page e3376, 2020.
-
+- R. Wang, R. Zhao, E. Ribando-Gros, J. Chen, Y. Tong, and G.-W. Wei. [HERMES: Persistent spectral graph software](https://www.aimsciences.org/article/doi/10.3934/fods.2021006), _Foundations of Data Science_, 3(1), 67, 2021.
+- R. Wang, D. D. Nguyen, and G.-W. Wei. [Persistent spectral graph](https://users.math.msu.edu/users/weig/paper/p243.pdf), _International Journal for Numerical Methods in Biomedical Engineering_, 36(9), page e3376, 2020.
 
 ## Contact
 
