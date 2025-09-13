@@ -108,7 +108,7 @@ python 03_extract_features_from_npy_to_csv.py --npy_file ./feature/feature_4k38_
 **Prerequisites:** Before training, download the required data files:
 
 1. Download `processed_data.zip` from the [Zenodo repository](https://zenodo.org/records/15469415)
-2. Extract the zip file and place the contents in `./data/processed_data/` folder
+2. Extract the zip file and place the contents in the `./data/processed_data/` folder
 3. Ensure you have the following files in your data directory:
    - `singlePPD_DockQ.csv`
    - `singlePPD_filtered_DockQ`
@@ -244,7 +244,7 @@ If you use TopoDockQ in your research, please cite:
 
 ## Complex Interface PDB Files Generation:
 - This step is flexible: you may use any molecular visualization or analysis software, such as PyMOL, ChimeraX, or scripting libraries like Biopython or ProDy, to generate interface structures.
-- For convenience, we provide a ready-to-use script, extract_interface.py, located in the ./src/ directory. This script is based on ProDy so please install ProDy(https://github.com/prody/ProDy) before running it.
+- For convenience, we provide a ready-to-use script, extract_interface.py, located in the ./src/ directory. This script is based on ProDy, so please install [ProDy](https://github.com/prody/ProDy) before running it.
 
 ## Other Helpful References for Persistent Combinatorial Laplacians:
 - R. Wang, R. Zhao, E. Ribando-Gros, J. Chen, Y. Tong, and G.-W. Wei. [HERMES: Persistent spectral graph software](https://www.aimsciences.org/article/doi/10.3934/fods.2021006), _Foundations of Data Science_, 3(1), 67, 2021.
