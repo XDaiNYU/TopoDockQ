@@ -1,4 +1,4 @@
-# TopoDockQ
+# TopoDockQ: A topological deep learning model that predicts protein-peptide binding quality
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
