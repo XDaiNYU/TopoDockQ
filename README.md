@@ -101,7 +101,7 @@ python -m main --pdb_id 4k38 --model_id 44 --bins "[0, 2.  ,  2.25,  2.5 ,  2.75
 ```bash
 python 03_extract_features_from_npy_to_csv.py --npy_file ./feature/feature_4k38_ranked_44_sp_interface.npy --output_file ./feature/example_features.csv        
 ```
-**Output:** Features in CSV format will be saved as `example_features.csv ` in the specified saving path. The original feature size is 2754, and the valid features are 2646 after removal(can also be found at `./data/valid_columns.txt`).
+**Output:** Features in CSV format will be saved as `example_features.csv ` in the specified saving path. Although the generated feature size is 2754, the valid features are 2646 after removal(can also be found at `./data/valid_columns.txt`). These features are set to 0 and can be safely removed, as described in the paper. 
 
 ## Model Training
 
